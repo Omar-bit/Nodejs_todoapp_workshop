@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function getTodos() {
+        const res = await fetch('http://localhost:3000/todo');
+        const data = await res.json();
+        const todos = data.data;
+        for (let i = 0; i < todos.length; i++) {
+          const div = document.createElement('div');
+          div.textContent =
+            todos[i].title + ' ' + (todos[i].done ? 'done' : 'pending');
+
+          document.querySelector('body').appendChild(div);
+        }
+        console.log(data);
+      }
+      getTodos();
+    </script>
+  </body>
+</html>
